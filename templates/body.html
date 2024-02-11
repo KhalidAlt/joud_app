@@ -1,0 +1,39 @@
+<div class="row p-3 mb-2 bg-light">
+  <p>
+    Joud cleaning is a tool that help to clean dataset manually.
+  </p>
+  <div class="col-sm-12 bg-info">
+    </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <span class="badge text-dark bg-light" id="index"></span>
+    </div>
+    <div class="col-sm-3">
+      <span class="badge text-dark bg-light text-right" id="num_rem"></span>
+    </div>
+    <div class="col-sm-3">
+      <span class="badge text-dark bg-light text-right" id="num_cont">Total Contributions: </span>
+    </div>
+  </div>
+  <form method="POST" id="theForm">
+    <div class="row bg-info text-dark p-3 mb-2">
+      <div class="col-sm-12">
+        <h3>Contribution Form</h3>
+        <label for="text">Text</label>
+        <textarea type="text" class="form-control edittable" id="text" name="text" rows="10"></textarea>
+        <label for="dataset_name">Dataset Name</label>
+        <input type="text" class="form-control edittable" id="dataset_name" name="dataset_name">
+        <input type="text" class="form-control input-sm changed" id="Reviewed by" name="Reviewed by"
+         placeholder="Enter your name here" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" align="center">
+        <button type="button" class="btn btn-outline-secondary" onclick="getNext()">Skip</button>
+        <button type="submit" class="btn btn-info" id="btnSubmit">Submit</button>
+        <input type="hidden" class="form-control" id="index_input" name="index" readonly>
+      </div>
+    </div>
+  </form>
+</div>
+
