@@ -36,8 +36,8 @@ def get_finished_indices():
         return set()
 
 def load_data():
-    ds = load_dataset('asas-ai/joud_sample','all')
-    ds = ds.map(lambda example: {"text": example["text"], "dataset_name": example["meta"]["dataset_name"]}, remove_columns=['meta'])
+    ds = load_dataset('asas-ai/joud_sample')
+    #ds = ds.map(lambda example: {"text": example["text"], "dataset_name": example["meta"]["dataset_name"]}, remove_columns=['meta'])
     index = list(range(0,len(ds['train'])))
     ds['train'] = ds['train'].add_column("index", index)
     # all instructions

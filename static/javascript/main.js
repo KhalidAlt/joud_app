@@ -17,7 +17,7 @@ function getContributionsBy(name) {
         data: {'Reviewed by': name}, //How can I preview this?
         dataType: 'json',
         success: function(d){
-            document.getElementById('num_cont').innerHTML = 'Number of Contributions: '+ d.num_cont;
+            document.getElementById('num_cont').value = d.num_cont;
         }
       });
 }
@@ -84,13 +84,15 @@ function setUpBarGraph(){
 function getNext() {
     element = getNextElment()
     document.getElementById('text').value = element['text'];
-    document.getElementById('dataset_name').value = element['dataset_name'];
+    document.getElementById('subset').innerHTML = 'Dataset Name: ' + element['dataset_name'];
     if (is_explore_page)
         document.getElementById('num_rem').innerHTML = 'Total: ' + element['num_rem'];
     else
         document.getElementById('num_rem').innerHTML = 'Remaining: ' + element['num_rem'];
     document.getElementById('index_input').value = element['index'];
-    document.getElementById('index').innerHTML = 'index: ' + element['index'];
+    document.getElementById('index_text').innerHTML = 'Text#: ' + element['index'];
+    document.getElementById('index_file').innerHTML = 'File#: ' + element['index_file'];
+    document.getElementById('index_line').innerHTML = 'json line#: ' + element['index_line'];
     document.getElementById('Reviewed by').value = curr_reviewer
     console.log("Current Reviewer", curr_reviewer)
 
@@ -118,7 +120,7 @@ function checkChanges() {
 function submitForm() {
     document.getElementById('theForm').submit();
     num_cont += 1
-    document.getElementById('num_rem').innerHTML = 'Number of Contributions: '+ num_cont;
+    document.getElementById('num_rem').value =  num_cont;
 
 }
 
