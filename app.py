@@ -42,7 +42,6 @@ def load_data():
     ds['train'] = ds['train'].add_column("index", index)
     # all instructions
     all_indices = set([i for i in range(len(ds['train']))])
-
     return all_indices, ds
 
 def save_json(entry):
@@ -50,22 +49,11 @@ def save_json(entry):
     if os.path.exists('static/data/dataset.json'):
         with open('static/data/dataset.json') as f:
             data = json.load(f)
-
     data.append(entry)
-
     with open('static/data/dataset.json', 'w') as f:
         json.dump(data, f, ensure_ascii = False, indent=2)
 
 all_indices, ds = load_data()
-
-
-@app.route('/api/submit',methods = ['POST', 'GET'])
-def submit():
-    if request.method == 'POST':
-        element = {k:request.form[k] for k in request.form}
-        save_json(element)
-    return render_template('index.html')
-
 @app.route('/api/data')
 def send_data():
     finished_indices = get_finished_indices()
@@ -75,7 +63,16 @@ def send_data():
     # for key in prob_mt_ar:
     #     element['instruction'] = element['instruction'].replace(key, prob_mt_ar[key], 1)
     element['num_rem'] = len(rem_indices)
+    element['num_contr'] = len(finished_indices)
     return jsonify(element)
+
+@app.route('/api/submit',methods = ['POST', 'GET'])
+def submit():
+    if request.method == 'POST':
+        element = {k:request.form[k] for k in request.form}
+        save_json(element)
+    return render_template('index.html')
+
 
 @app.route('/api/getConNames')
 def get_cont_names():
@@ -85,14 +82,12 @@ def get_cont_names():
 
 @app.route('/api/getCon', methods = ['POST', 'GET'])
 def get_cont():
-    print(request.form)
     name = request.form['Reviewed by']
     with open('static/data/dataset.json') as f:
         data = json.load(f)
     return jsonify({
         "num_cont":len([elm for elm in data if elm['Reviewed by'] == name])
     })
-
 
 @app.route('/api/saved')
 def send_saved_data():
@@ -124,7 +119,6 @@ def push_hub():
 def init_dataset():
     os.makedirs('static/data', exist_ok=True)
     try:
-        print('loading previous dataset')
         ds = load_dataset('asas-ai/joud_cleaned_sample', download_mode = "force_redownload", verification_mode='no_checks')
         data = [elm for elm in ds['train']]
     except:
@@ -136,7 +130,6 @@ def init_dataset():
 @app.route('/explore')
 def explore():
     return render_template('explore.html')
-
 
 @app.route('/')
 def index():
