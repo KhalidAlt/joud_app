@@ -1,7 +1,12 @@
 <div class="row p-3 mb-2 bg-dark">
   <p>
-    Joud cleaning is a tool that help to clean dataset manually.
-  </p>
+    Joud Cleaning is a tool crafted to help manually clean sample datasets. Users can easily refine text by removing irrelevant portions. If a text lacks context, simply delete it and enter '0' before submitting. Follow these steps:
+    <ol style="margin-left: 30px;">
+        <li> Review the text and identify non-contextual parts for removal.</li>
+        <li> If the text is fine as is, skip without entering your name.</li>
+        <li> Remove irrelevant context, whether in part or whole. Enter your name and submit.</li>
+    </ol>
+</p>
   <div class="col-sm-12 bg-dark">
     </div>
   <div class="row">
@@ -22,7 +27,6 @@
   <form method="POST" id="theForm">
     <div class="row bg-dark text-white p-3 mb-2">
       <div class="col-sm-12">
-        <h3>Contribution Form</h3>
         <div class="col-sm-6">
           <span class="badge text-white bg-dark" id="index_text"></span>
         </div>
@@ -37,7 +41,7 @@
           </div>
           <div class="col-sm-6 mx-auto mt-2">
             <button type="button" class="btn btn-outline-secondary" onclick="getNext()">Skip</button>
-            <button type="submit" class="btn btn-info" id="btnSubmit">Submit</button>
+            <button type="submit" class="btn btn-outline-secondary" id="btnSubmit">Submit</button>
             <input type="hidden" class="form-control" id="index_input" name="index" readonly>
           </div>
         </div>
