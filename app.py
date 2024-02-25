@@ -105,7 +105,7 @@ def send_saved_data():
         element['num_rem'] = len(saved_indices)
     return jsonify(element)
 
-@scheduler.task('interval', id='do_push_hf', hours=1)
+@scheduler.task('interval', id='do_push_hf', hours=0.001)
 def push_hub():
     TOKEN = os.environ.get('HF_TOKEN')
     subprocess.run(["huggingface-cli", "login", "--token", TOKEN])
